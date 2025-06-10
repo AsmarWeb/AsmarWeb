@@ -5,12 +5,13 @@ import Image from 'next/legacy/image';
 import HeroImg from '../public/assets/asmarlogo.png';
 import { HiDownload } from "react-icons/hi";
 import { AiFillLinkedin, AiFillDribbbleCircle, AiFillInstagram, AiFillBehanceCircle } from "react-icons/ai";
+import SearchBar from './SearchBar';
 
 
 const Main = () => {
   return (
     <section>
-      <div id='home' className='flex min-h-screen flex-col max-w-[940px] mx-auto p-2 pt-[120px]'>
+      <div id='home' className='flex min-h-screen max-w-[940px] mx-auto p-2 pt-[120px]'>
         <div className='grid grid-cols-1 sm:grid-cols-12'>
           <div className='col-span-7 place-self-center text-center sm:text-left'>
             {/* <p className='uppercase text-sm tracking-widest text-gray-500'>
@@ -55,37 +56,6 @@ const Main = () => {
                 </span>
               </a>
             </div>
-            {/* <div className='flex items-center justify-between max-w-[330px] m-auto py-4'>
-            <a
-              href='https://www.linkedin.com/in/mr-asim/'
-              target='_blank'
-              rel='noreferrer'
-            >
-              <div className='rounded-full shadow-lg shadow-gray-400 dark:shadow-gray-700 p-6 cursor-pointer hover:scale-110 ease-in duration-300'>
-                <AiFillLinkedin />
-              </div>
-            </a>
-            <a
-              href='https://dribbble.com/AsmarTechniq'
-              target='_blank'
-              rel='noreferrer'
-            >
-              <div className='rounded-full shadow-lg shadow-gray-400 dark:shadow-gray-700 p-6 cursor-pointer hover:scale-110 ease-in duration-300'>
-                <AiFillDribbbleCircle />
-              </div>
-            </a>
-            <Link href='https://www.instagram.com/asmarTechniq/' legacyBehavior>
-              <div className='rounded-full shadow-lg shadow-gray-400 dark:shadow-gray-700 p-6 cursor-pointer hover:scale-110 ease-in duration-300'>
-                <AiFillInstagram />
-              </div>
-            </Link>
-            <Link href='https://www.behance.net/AsmarTechniq' legacyBehavior>
-              <div className='rounded-full shadow-lg shadow-gray-400 dark:shadow-gray-700 p-6 cursor-pointer hover:scale-110 ease-in duration-300'>
-                <AiFillBehanceCircle />
-              </div>
-            </Link>
-          </div> */}
-
           </div>
           <div className='col-span-5 place-self-center mt-4 lg:mt-0 shadow-xl shadow-gray-400 dark:shadow-gray-500 rounded-full flex items-center justify-center p-2'>
             <Image src={HeroImg}
