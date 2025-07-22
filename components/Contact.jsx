@@ -27,7 +27,7 @@ const Contact = () => {
                 />
               </div>
               <div>
-                <h2 className='py-2'>AsmarTechniq</h2>
+                <h2 className='py-2'>AsmarWeb</h2>
                 <p>Front-End Developer</p>
                 <p className='py-4'>
                   I am available for freelance or full-time positions. Contact
@@ -47,7 +47,7 @@ const Contact = () => {
                     </div>
                   </a>
                   <a
-                    href='https://github.com/AsmarTechniq'
+                    href='https://github.com/AsmarWeb'
                     target='_blank'
                     rel='noreferrer'
                   >

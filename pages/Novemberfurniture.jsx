@@ -40,7 +40,7 @@ const twitch = () => {
             <button className='px-8 py-2 mt-4 mr-8'>Demo</button>
           </a>
           <a
-            href='https://github.com/AsmarTechniq'
+            href='https://github.com/AsmarWeb'
             target='_blank'
             rel='noreferrer'
           >
