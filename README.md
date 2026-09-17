@@ -91,11 +91,11 @@ A Laravel project focused on authentication, roles and permissions.
 
 ## 📫 Let's Connect
 
-🌐 Website: **Coming Soon**
+🌐 Website: **asmarweb.vercel.app**
 
-📧 Email: **Your Email**
+📧 Email: **mr.asmar.web@gmail.com**
 
-💼 LinkedIn: **Your LinkedIn**
+💼 LinkedIn: **www.linkedin.com/in/mr-asim**
 
 📸 Instagram: **@AsmarWeb**
 
