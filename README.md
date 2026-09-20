@@ -44,9 +44,10 @@ I’m interested in creating **web platforms, SaaS products, APIs and custom dig
 
 ## ⭐ Featured Projects
 
-### 🎟️ Dubai Events Platform
+### 🇦🇪 RoomUAE
+Find your room. Find your bed. Find your place.
 
-A Laravel-based event discovery platform designed to help users explore, search and interact with events in Dubai.
+RoomUAE is an open-source platform for discovering rooms, bed spaces, partitions and shared accommodation across the UAE.
 
 **Tech:** Laravel • PHP • Blade • API Integration
 
