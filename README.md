@@ -44,10 +44,10 @@ I’m interested in creating **web platforms, SaaS products, APIs and custom dig
 
 ## ⭐ Featured Projects
 
-### 🇦🇪 RoomUAE
-Find your room. Find your bed. Find your place.
+### 🇦🇪 ServUAE
+One Platform. Every Service. Across the UAE.
 
-RoomUAE is an open-source platform for discovering rooms, bed spaces, partitions and shared accommodation across the UAE.
+ServUAE is an open-source service management and marketplace platform connecting customers, service providers, maintenance companies, and enterprise systems across the United Arab Emirates.
 
 **Tech:** Laravel • PHP • Blade • API Integration
 
