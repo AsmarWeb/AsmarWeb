@@ -1,26 +1,57 @@
-{/* <div className='flex items-center justify-between max-w-[330px] m-auto py-4'>
-    <a href='https://www.linkedin.com/in/mr-asim/' target='_blank' rel='noreferrer'>
-        <div
-            className='rounded-full shadow-lg shadow-gray-400 dark:shadow-gray-700 p-6 cursor-pointer hover:scale-110 ease-in duration-300'>
-            <AiFillLinkedin />
-        </div>
-    </a>
-    <a href='https://dribbble.com/AsmarTechniq' target='_blank' rel='noreferrer'>
-        <div
-            className='rounded-full shadow-lg shadow-gray-400 dark:shadow-gray-700 p-6 cursor-pointer hover:scale-110 ease-in duration-300'>
-            <AiFillDribbbleCircle />
-        </div>
-    </a>
-    <Link href='https://www.instagram.com/asmarTechniq/' legacyBehavior>
-    <div
-        className='rounded-full shadow-lg shadow-gray-400 dark:shadow-gray-700 p-6 cursor-pointer hover:scale-110 ease-in duration-300'>
-        <AiFillInstagram />
-    </div>
-    </Link>
-    <Link href='https://www.behance.net/AsmarTechniq' legacyBehavior>
-    <div
-        className='rounded-full shadow-lg shadow-gray-400 dark:shadow-gray-700 p-6 cursor-pointer hover:scale-110 ease-in duration-300'>
-        <AiFillBehanceCircle />
-    </div>
-    </Link>
-</div> */}
+import { AiFillLinkedin, AiFillGithub, AiFillInstagram, AiFillDribbbleCircle,
+AiFillBehanceCircle, } from "react-icons/ai"; {/* Social Media Links */}
+<div className="flex flex-wrap items-center justify-center gap-4 py-6">
+  {[ { name: "LinkedIn", url: "https://www.linkedin.com/in/mr-asim/", icon:
+  AiFillLinkedin, }, { name: "GitHub", url: "https://github.com/AsmarWeb", icon:
+  AiFillGithub, }, { name: "Instagram", url:
+  "https://www.instagram.com/asmar.web/", icon: AiFillInstagram, }, { name:
+  "Dribbble", url: "https://dribbble.com/AsmarTechniq", icon:
+  AiFillDribbbleCircle, }, { name: "Behance", url:
+  "https://www.behance.net/AsmarTechniq", icon: AiFillBehanceCircle, }, ].map(({
+  name, url, icon: Icon }) => (
+  <a
+    key="{name}"
+    href="{url}"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="{`Visit"
+    AsmarWeb
+    Studio
+    on
+    ${name}`}
+    title="{name}"
+    className="
+        group flex h-14 w-14
+        items-center justify-center
+        rounded-full
+        border border-gray-200
+        bg-white
+        text-[#018A7C]
+        shadow-md
+        transition-all duration-300
+        hover:-translate-y-1
+        hover:scale-110
+        hover:border-[#018A7C]
+        hover:bg-[#018A7C]
+        hover:text-white
+        hover:shadow-lg
+        focus-visible:outline
+        focus-visible:outline-2
+        focus-visible:outline-offset-2
+        focus-visible:outline-[#018A7C]
+        dark:border-white/10
+        dark:bg-[#121126]
+        dark:text-[#32B6A5]
+        dark:hover:border-[#F5812D]
+        dark:hover:bg-[#F5812D]
+        dark:hover:text-[#030017]
+      "
+  >
+    <Icon
+      size="{24}"
+      aria-hidden="true"
+      className="transition-transform duration-300 group-hover:scale-110"
+    />
+  </a>
+  ))}
+</div>

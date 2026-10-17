@@ -1,14 +1,18 @@
-import Navbar from '../components/Navbar';
-import '../styles/globals.css';
-import ThemeSwitch from '../components/theme-switch';
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import ThemeSwitch from "../components/theme-switch";
 
-function MyApp({
-  Component, pageProps: { ...pageProps }
-}) {
+import "../styles/globals.css";
+
+function MyApp({ Component, pageProps }) {
   return (
     <>
       <Navbar />
+
       <Component {...pageProps} />
+
+      <Footer />
+
       <ThemeSwitch />
     </>
   );

@@ -1,37 +1,309 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&family=Cairo:wght@400;500;600;700;800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ==========================================
+   ASMARWEB STUDIO
+   Global Design System
+========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
+:root {
+  /* Brand colors */
+  --studio-teal: #018a7c;
+  --studio-coral: #dc422f;
+  --studio-orange: #f5812d;
+  --studio-midnight: #030017;
+  --studio-gray: #5c5c5c;
 
-html {
-  scroll-behavior: smooth;
-  font-family: 'Raleway', sans-serif;
+  /* Light theme */
+  --studio-bg: #ffffff;
+  --studio-surface: #f8fafb;
+  --studio-text: #171725;
+  --studio-muted: #5c5c5c;
+  --studio-border: #e5e7eb;
+
+  /* Shared */
+  --studio-primary: var(--studio-teal);
+  --studio-accent: var(--studio-coral);
+
+  color-scheme: light;
 }
 
+/* ==========================================
+   DARK MODE
+========================================== */
+
+html.dark {
+  --studio-bg: #030017;
+  --studio-surface: #121126;
+  --studio-text: #f9fafb;
+  --studio-muted: #c9c9d2;
+  --studio-border: #29283d;
+
+  color-scheme: dark;
+}
+
+/* ==========================================
+   GLOBAL RESET & TYPOGRAPHY
+========================================== */
+
 @layer base {
-  body {
-    @apply bg-gray-50 text-gray-950 tracking-wide dark:bg-gray-900 dark:text-gray-50 dark:text-opacity-90
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+    font-family: "Raleway", sans-serif;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-bold
+  body {
+    background-color: var(--studio-bg);
+    color: var(--studio-text);
+
+    @apply min-h-screen antialiased
+      tracking-wide transition-colors
+      duration-300;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold tracking-tight;
   }
 
   h1 {
-    @apply text-4xl sm:text-5xl md:text-6xl font-[Raleway]
+    @apply text-4xl sm:text-5xl md:text-6xl;
   }
 
   h2 {
-    @apply text-3xl sm:text-4xl
+    @apply text-3xl sm:text-4xl;
   }
 
-  li {
-    @apply cursor-pointer
+  h3 {
+    @apply text-2xl;
+  }
+
+  p {
+    @apply leading-relaxed;
+  }
+
+  a {
+    @apply transition-colors duration-200;
   }
 
   button {
-    @apply shadow-xl shadow-gray-600 dark:shadow-gray-700 rounded-xl uppercase bg-[#000000] text-white
+    @apply cursor-pointer
+      transition-all duration-200;
+  }
+
+  button:disabled {
+    @apply cursor-not-allowed opacity-50;
+  }
+
+  img {
+    @apply max-w-full;
+  }
+
+  ::selection {
+    background-color: var(--studio-teal);
+    color: #ffffff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--studio-orange);
+    outline-offset: 3px;
+  }
+}
+
+/* ==========================================
+   REUSABLE STUDIO COMPONENTS
+========================================== */
+
+@layer components {
+  /* Layout */
+  .studio-container {
+    @apply mx-auto w-full max-w-7xl
+      px-4 sm:px-6 lg:px-8;
+  }
+
+  .studio-section {
+    @apply py-16 md:py-24;
+  }
+
+  /* Section heading */
+  .studio-heading {
+    @apply text-3xl font-extrabold
+      tracking-tight sm:text-4xl
+      md:text-5xl;
+
+    color: var(--studio-text);
+  }
+
+  .studio-description {
+    @apply text-base leading-8 md:text-lg;
+
+    color: var(--studio-muted);
+  }
+
+  /* Primary button */
+  .studio-btn-primary {
+    @apply inline-flex items-center
+      justify-center gap-2
+      rounded-xl px-6 py-3
+      font-semibold text-white
+      shadow-md transition-all
+      duration-300
+      hover:-translate-y-0.5
+      focus-visible:outline
+      focus-visible:outline-2
+      focus-visible:outline-offset-2;
+
+    background-color: var(--studio-teal);
+  }
+
+  .studio-btn-primary:hover {
+    background-color: #007366;
+  }
+
+  /* Secondary button */
+  .studio-btn-secondary {
+    @apply inline-flex items-center
+      justify-center gap-2
+      rounded-xl border px-6 py-3
+      font-semibold transition-all
+      duration-300
+      hover:-translate-y-0.5;
+
+    color: var(--studio-text);
+    background-color: var(--studio-surface);
+    border-color: var(--studio-border);
+  }
+
+  .studio-btn-secondary:hover {
+    border-color: var(--studio-teal);
+    color: var(--studio-teal);
+  }
+
+  /* Cards */
+  .studio-card {
+    @apply rounded-2xl border p-6
+      shadow-sm transition-all
+      duration-300
+      hover:-translate-y-1
+      hover:shadow-lg;
+
+    background-color: var(--studio-surface);
+    border-color: var(--studio-border);
+  }
+
+  /* Labels */
+  .studio-badge {
+    @apply inline-flex items-center
+      rounded-full px-4 py-2
+      text-xs font-bold uppercase
+      tracking-widest;
+
+    background-color: rgba(1, 138, 124, 0.1);
+    color: var(--studio-teal);
+  }
+
+  html.dark .studio-badge {
+    color: #32b6a5;
+  }
+
+  /* Form fields */
+  .studio-input {
+    @apply w-full rounded-xl border
+      px-4 py-3 outline-none
+      transition-colors duration-200;
+
+    background-color: var(--studio-bg);
+    border-color: var(--studio-border);
+    color: var(--studio-text);
+  }
+
+  .studio-input:focus {
+    border-color: var(--studio-teal);
+    box-shadow: 0 0 0 3px rgba(1, 138, 124, 0.12);
+  }
+}
+
+/* ==========================================
+   UTILITY CLASSES
+========================================== */
+
+@layer utilities {
+  .text-studio-teal {
+    color: var(--studio-teal);
+  }
+
+  .text-studio-coral {
+    color: var(--studio-coral);
+  }
+
+  .text-studio-orange {
+    color: var(--studio-orange);
+  }
+
+  .bg-studio-teal {
+    background-color: var(--studio-teal);
+  }
+
+  .bg-studio-coral {
+    background-color: var(--studio-coral);
+  }
+
+  .bg-studio-orange {
+    background-color: var(--studio-orange);
+  }
+
+  .bg-studio-surface {
+    background-color: var(--studio-surface);
+  }
+
+  .text-studio-muted {
+    color: var(--studio-muted);
+  }
+
+  .border-studio {
+    border-color: var(--studio-border);
+  }
+
+  .studio-gradient-text {
+    background: linear-gradient(120deg, #018a7c 0%, #dc422f 60%, #f5812d 100%);
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+/* ==========================================
+   ARABIC LANGUAGE SUPPORT
+========================================== */
+
+html[lang="ar"],
+[lang="ar"] {
+  font-family: "Cairo", sans-serif;
+}
+
+/* ==========================================
+   ACCESSIBILITY
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

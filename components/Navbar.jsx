@@ -1,227 +1,600 @@
-import Image from 'next/legacy/image';
-import Link from 'next/link';
-import React, { useState, useEffect } from 'react';
-import { AiOutlineClose, AiOutlineMail, AiOutlineMenu } from 'react-icons/ai';
-import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
-import { BsFillPersonLinesFill } from 'react-icons/bs';
-import { useRouter } from 'next/router';
-import NavLogo from '../public/assets/navLogo.png';
-import UserImg from '../public/assets/user.png'
-import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
-import SearchBar from './SearchBar';
-import NavIcons from './NavIcons';
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import Image from "next/legacy/image";
+import { useRouter } from "next/router";
+
+import {
+  FaGithub,
+  FaLinkedinIn,
+  FaInstagram,
+  FaArrowRight,
+  FaEnvelope,
+} from "react-icons/fa";
+
+import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+
+import NavLogo from "../public/assets/navLogo.png";
+
+/* ==========================================
+   ASMARWEB STUDIO
+   Responsive Navigation
+========================================== */
+
+const navLinks = [
+  { name: "Home", href: "/#home", id: "home" },
+  { name: "About", href: "/#about", id: "about" },
+  { name: "Skills", href: "/#skills", id: "skills" },
+  { name: "Projects", href: "/#projects", id: "projects" },
+  { name: "Contact", href: "/#contact", id: "contact" },
+];
+
+const socialLinks = [
+  {
+    name: "GitHub",
+    url: "https://github.com/AsmarWeb",
+    icon: FaGithub,
+  },
+  {
+    name: "LinkedIn",
+    url: "https://www.linkedin.com/in/mr-asim/",
+    icon: FaLinkedinIn,
+  },
+  {
+    name: "Instagram",
+    url: "https://www.instagram.com/asmar.web/",
+    icon: FaInstagram,
+  },
+];
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
-  const [shadow, setShadow] = useState(false);
-  const [navBg, setNavBg] = useState('#000000');
-  const [linkColor, setLinkColor] = useState('#ffffff');
-  // const [position, setPosition] = useState('fixed')
+  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
+
   const router = useRouter();
 
-  const isUserLoggedIn = false;
-
-  // const [providers, setProviders] = useState(null);
-
-  // useEffect(() => {
-  //   const setProviders = async () => {
-  //     const response = await getProviders();
-
-  //     setProviders(response);
-  //   }
-
-  //   setProviders();
-  // }, [])
-
+  /* Detect scrolling */
   useEffect(() => {
-    if (
-      router.asPath === '/property' ||
-      router.asPath === '/crypto' ||
-      router.asPath === '/netflix' ||
-      router.asPath === '/twitch'
-    ) {
-      setNavBg('transparent');
-      setLinkColor('#ecf0f3');
-    } else {
-      setNavBg('#000000');
-      setLinkColor('#ffffff');
-    }
-  }, [router]);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 30);
 
-  const handleNav = () => {
-    setNav(!nav);
-  };
+      if (router.pathname !== "/") {
+        setActiveSection("");
+        return;
+      }
 
+      const sections = navLinks
+        .map((item) => document.getElementById(item.id))
+        .filter(Boolean);
+
+      const currentPosition = window.scrollY + 140;
+
+      let currentSection = "home";
+
+      sections.forEach((section) => {
+        if (section.offsetTop <= currentPosition) {
+          currentSection = section.id;
+        }
+      });
+
+      setActiveSection(currentSection);
+    };
+
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [router.pathname]);
+
+  /* Close menu when route changes */
   useEffect(() => {
-    const handleShadow = () => {
-      if (window.scrollY >= 90) {
-        setShadow(true);
-      } else {
-        setShadow(false);
+    const closeMenu = () => setNav(false);
+
+    router.events.on("routeChangeStart", closeMenu);
+    router.events.on("hashChangeStart", closeMenu);
+
+    return () => {
+      router.events.off("routeChangeStart", closeMenu);
+      router.events.off("hashChangeStart", closeMenu);
+    };
+  }, [router.events]);
+
+  /* Prevent body scrolling while menu is open */
+  useEffect(() => {
+    document.body.style.overflow = nav ? "hidden" : "";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [nav]);
+
+  /* Close mobile menu with Escape */
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setNav(false);
       }
     };
-    window.addEventListener('scroll', handleShadow);
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
   }, []);
 
   return (
+    <>
+      {/* NAVBAR */}
+      <nav
+        aria-label="Main navigation"
+        className={`
+          fixed left-0 top-0 z-[100]
+          w-full border-b
+          transition-all duration-300
 
-    <nav style={{ backgroundColor: `${navBg}` }}
-      className={
-        shadow
-          ? 'fixed w-full h-20 shadow-xl z-[100] ease-in-out duration-300'
-          : 'fixed w-full h-20 z-[100] border-b border-gray-300'
-      }>
-      <div className='block px-6 py-4 mx-auto sticky top-3 shadow lg:px-8 backdrop-blur-lg backdrop-saturate-150 z-[9999]'>
-        <div className="container flex flex-wrap items-center justify-between mx-auto dark:border-gray-600">
+          ${
+            scrolled
+              ? `
+                border-gray-200
+                bg-white/95 shadow-lg
+                shadow-gray-200/30
+                backdrop-blur-xl
+                dark:border-white/10
+                dark:bg-[#030017]/95
+                dark:shadow-black/20
+              `
+              : `
+                border-gray-200/70
+                bg-white/90
+                backdrop-blur-lg
+                dark:border-white/10
+                dark:bg-[#030017]/90
+              `
+          }
+        `}
+      >
+        <div
+          className="
+            studio-container
+            flex h-20 items-center
+            justify-between gap-4
+          "
+        >
+          {/* BRAND */}
           <Link
-            href="/"
-            className="mr-4 block cursor-pointer py-1.5 text-red-600 font-bold text-2xl"
+            href="/#home"
+            className="
+              flex shrink-0 items-center
+              gap-3
+            "
+            aria-label="AsmarWeb Studio - Home"
+            onClick={() => setNav(false)}
           >
-            {/* <Image src={NavLogo}
-            alt='Logo'
-            className='relative'
-            width={30}
-            height={30}
-          /> */}
-            <p>AsmarWeb</p>
+            {/* Logo */}
+            {/* <span
+              className="
+                relative flex h-11 w-11
+                items-center justify-center
+                overflow-hidden rounded-xl
+                border border-[#018A7C]/20
+                bg-white p-1
+                dark:bg-[#121126]
+              "
+            >
+              <Image
+                src={NavLogo}
+                alt="AsmarWeb Studio"
+                width={40}
+                height={40}
+                objectFit="contain"
+              />
+            </span> */}
+
+            {/* Studio name */}
+            <span
+              className="
+                flex flex-col
+                leading-tight
+              "
+            >
+              <span
+                className="
+                  text-xl font-extrabold
+                  tracking-tight
+                  text-[#030017]
+                  dark:text-white
+                "
+              >
+                AsmarWeb
+              </span>
+
+              <span
+                className="
+                  text-[11px] font-bold
+                  uppercase tracking-[0.2em]
+                  text-[#018A7C]
+                  dark:text-[#32B6A5]
+                "
+              >
+                Studio
+              </span>
+            </span>
           </Link>
 
-          {/* RIGHT */}
-          <div className='flex flex-col text-gray-600 capitalize dark:text-gray-300 lg:flex lg:px-16 lg:-mx-4 lg:flex-row lg:items-cente lg:order-1'>
-            <div className='hidden md:flex'>
-              <ul style={{ color: `${linkColor}` }} className='flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0'>
-                <li className='text-sm uppercase hover:border-b mt-2 lg:mt-0 lg:mx-4'>
-                  <Link href='/#about'>About</Link>
-                </li>
-                <li className='text-sm uppercase hover:border-b mt-2 lg:mt-0 lg:mx-4'>
-                  <Link href='/#skills'>Skills</Link>
-                </li>
-                <li className='text-sm uppercase hover:border-b mt-2 lg:mt-0 lg:mx-4'>
-                  <Link href='/#projects'>Projects</Link>
-                </li>
-                {/* <li className='text-sm uppercase hover:border-b'>
-              <Link href='/resume'>Resume</Link>
-            </li> */}
-                <li className='text-sm uppercase hover:border-b mt-2 lg:mt-0 lg:mx-4'>
-                  <Link href='/#contact'>Contact</Link>
-                </li>
-              </ul>
-            </div>
+          {/* DESKTOP NAVIGATION */}
+          <div
+            className="
+              hidden items-center
+              gap-1 lg:flex
+            "
+          >
+            {navLinks.map((item) => {
+              const isActive = activeSection === item.id;
+
+              return (
+                <Link
+                  key={item.id}
+                  href={item.href}
+                  aria-current={isActive ? "location" : undefined}
+                  className={`
+                    relative rounded-lg
+                    px-4 py-2.5
+                    text-sm font-semibold
+                    transition-all duration-200
+
+                    ${
+                      isActive
+                        ? `
+                          bg-[#018A7C]/10
+                          text-[#018A7C]
+                          dark:text-[#32B6A5]
+                        `
+                        : `
+                          text-gray-700
+                          hover:bg-[#018A7C]/5
+                          hover:text-[#018A7C]
+                          dark:text-gray-300
+                          dark:hover:text-[#32B6A5]
+                        `
+                    }
+                  `}
+                >
+                  {item.name}
+
+                  {isActive && (
+                    <span
+                      aria-hidden="true"
+                      className="
+                        absolute bottom-0
+                        left-1/2 h-0.5 w-6
+                        -translate-x-1/2
+                        rounded-full
+                        bg-[#F5812D]
+                      "
+                    />
+                  )}
+                </Link>
+              );
+            })}
           </div>
 
-
-          {/* Hamburger Icon */}
-          <div
-            style={{ color: `${linkColor}` }}
-            onClick={handleNav}
-            className='md:hidden relative ml-auto h-6 max-h-[40px] w-6 max-w-[40px]'
-          >
-            <AiOutlineMenu size={25} />
-          </div>
-
-
-          {/* Mobile Menu */}
-          {/* Overlay */}
-          <div
-            className={
-              nav ? 'md:hidden fixed left-0 top-0 w-full h-screen bg-black/70' : ''
-            }
-          >
-            {/* Side Drawer Menu */}
-            <div
-              className={
-                nav
-                  ? ' fixed left-0 top-0 w-[75%] sm:w-[60%] md:w-[45%] h-screen bg-[#ffffff] p-10 ease-in duration-500'
-                  : 'fixed left-[-100%] top-0 p-10 ease-in duration-500'
-              }
+          {/* RIGHT ACTIONS */}
+          <div className="flex items-center gap-3">
+            {/* Desktop contact button */}
+            <Link
+              href="/#contact"
+              className="
+                hidden items-center
+                justify-center gap-2
+                rounded-xl
+                bg-[#018A7C]
+                px-5 py-3
+                text-sm font-semibold
+                text-white
+                shadow-md
+                shadow-[#018A7C]/15
+                transition duration-300
+                hover:-translate-y-0.5
+                hover:bg-[#007366]
+                lg:inline-flex
+              "
             >
-              <div>
-                <div className='flex w-full items-center justify-between'>
-                  <Link href='/' className='text-2xl font-semibold tracking-wide dark:text-gray-300'>AsmarWeb</Link>
-                  <div
-                    onClick={handleNav}
-                    className='rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer dark:text-gray-300'
-                  >
-                    <AiOutlineClose />
-                  </div>
-                </div>
-                <div className='border-b border-gray-300 my-4'>
-                  <p className='w-[85%] md:w-[90%] py-4 dark:text-gray-300'>
-                    Let&#39;s build something legendary together
-                  </p>
-                </div>
-              </div>
-              <div className='py-4 flex flex-col'>
-                <ul className='uppercase'>
-                  <Link href='/#about' legacyBehavior>
-                    <li onClick={() => setNav(false)} className='py-4 text-sm dark:text-gray-300'>
-                      About
-                    </li>
-                  </Link>
-                  <Link href='/#skills' legacyBehavior>
-                    <li onClick={() => setNav(false)} className='py-4 text-sm dark:text-gray-300'>
-                      Skills
-                    </li>
-                  </Link>
-                  <Link href='/#projects' legacyBehavior>
-                    <li onClick={() => setNav(false)} className='py-4 text-sm dark:text-gray-300'>
-                      Projects
-                    </li>
-                  </Link>
-                  <Link href='/#contact' legacyBehavior>
-                    <li onClick={() => setNav(false)} className='py-4 text-sm dark:text-gray-300'>
-                      Contact
-                    </li>
-                  </Link>
-                </ul>
-                <div className='pt-20'>
-                  <p className='uppercase tracking-widest text-red-600'>
-                    Let&#39;s Connect
-                  </p>
-                  <div className='flex items-center justify-between my-4 w-full sm:w-[80%] dark:text-gray-300'>
-                    <a
-                      href='https://www.linkedin.com/in/mr-asim/'
-                      target='_blank'
-                      rel='noreferrer'
-                    >
-                      <div className='rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-105 ease-in duration-300'>
-                        <FaLinkedinIn />
-                      </div>
-                    </a>
-                    <a
-                      href='https://github.com/AsmarTechniq'
-                      target='_blank'
-                      rel='noreferrer'
-                    >
-                      <div className='rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-105 ease-in duration-300'>
-                        <FaGithub />
-                      </div>
-                    </a>
-                    <Link href='/#contact' legacyBehavior>
-                      <div
-                        onClick={() => setNav(!nav)}
-                        className='rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-105 ease-in duration-300'
-                      >
-                        <AiOutlineMail />
-                      </div>
-                    </Link>
-                    <Link href='/resume' legacyBehavior>
-                      <div
-                        onClick={() => setNav(!nav)}
-                        className='rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-105 ease-in duration-300'
-                      >
-                        <BsFillPersonLinesFill />
+              Let&apos;s Talk
+              <FaArrowRight size={12} aria-hidden="true" />
+            </Link>
 
-                      </div>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {/* Mobile menu toggle */}
+            <button
+              type="button"
+              onClick={() => setNav(!nav)}
+              aria-label={nav ? "Close menu" : "Open menu"}
+              aria-expanded={nav}
+              aria-controls="studio-mobile-menu"
+              className="
+                flex h-11 w-11
+                items-center justify-center
+                rounded-xl border
+                border-gray-200
+                !bg-white !text-[#030017]
+                !shadow-none
+                transition-colors
+                hover:!border-[#018A7C]
+                dark:!border-white/10
+                dark:!bg-[#121126]
+                dark:!text-white
+                lg:hidden
+              "
+            >
+              {nav ? (
+                <AiOutlineClose size={23} aria-hidden="true" />
+              ) : (
+                <AiOutlineMenu size={23} aria-hidden="true" />
+              )}
+            </button>
           </div>
         </div>
-      </div>
-    </nav >
+      </nav>
+
+      {/* MOBILE OVERLAY */}
+      {nav && (
+        <div
+          className="
+            fixed inset-0 z-[110]
+            bg-[#030017]/70
+            backdrop-blur-sm
+            lg:hidden
+          "
+          onClick={() => setNav(false)}
+          aria-hidden="true"
+        />
+      )}
+
+      {/* MOBILE DRAWER */}
+      <aside
+        id="studio-mobile-menu"
+        aria-label="Mobile navigation"
+        aria-hidden={!nav}
+        inert={!nav}
+        className={`
+          fixed left-0 top-0 z-[120]
+          flex h-[100dvh]
+          w-[85%] max-w-[360px]
+          flex-col overflow-y-auto
+          border-r border-gray-200
+          bg-white p-6
+          text-[#030017]
+          shadow-2xl
+          transition-transform duration-300
+          dark:border-white/10
+          dark:bg-[#0B0A1C]
+          dark:text-white
+          lg:hidden
+
+          ${nav ? "translate-x-0" : "-translate-x-full"}
+        `}
+      >
+        {/* Drawer header */}
+        <div
+          className="
+            flex items-center
+            justify-between gap-3
+          "
+        >
+          <Link
+            href="/#home"
+            onClick={() => setNav(false)}
+            className="
+              text-xl font-extrabold
+              tracking-tight
+            "
+          >
+            AsmarWeb{" "}
+            <span
+              className="
+                text-[#018A7C]
+                dark:text-[#32B6A5]
+              "
+            >
+              Studio.
+            </span>
+          </Link>
+
+          <button
+            type="button"
+            onClick={() => setNav(false)}
+            aria-label="Close navigation"
+            className="
+              flex h-10 w-10
+              shrink-0 items-center
+              justify-center
+              rounded-xl
+              !bg-[#018A7C]/10
+              !text-[#018A7C]
+              !shadow-none
+              dark:!text-[#32B6A5]
+            "
+          >
+            <AiOutlineClose size={20} aria-hidden="true" />
+          </button>
+        </div>
+
+        {/* Description */}
+        <p
+          className="
+            mt-6 border-b
+            border-gray-200 pb-6
+            text-sm leading-7
+            text-gray-600
+            dark:border-white/10
+            dark:text-gray-300
+          "
+        >
+          Build. Design. Innovate.
+          <span className="mt-1 block">
+            Creative technology solutions for ambitious ideas.
+          </span>
+        </p>
+
+        {/* Mobile links */}
+        <ul className="mt-6 space-y-2">
+          {navLinks.map((item) => {
+            const isActive = activeSection === item.id;
+
+            return (
+              <li key={item.id}>
+                <Link
+                  href={item.href}
+                  onClick={() => setNav(false)}
+                  className={`
+                    flex items-center
+                    justify-between
+                    rounded-xl px-4 py-3.5
+                    text-sm font-semibold
+                    transition duration-200
+
+                    ${
+                      isActive
+                        ? `
+                          bg-[#018A7C]/10
+                          text-[#018A7C]
+                          dark:text-[#32B6A5]
+                        `
+                        : `
+                          text-gray-700
+                          hover:bg-[#018A7C]/5
+                          hover:text-[#018A7C]
+                          dark:text-gray-300
+                          dark:hover:text-[#32B6A5]
+                        `
+                    }
+                  `}
+                >
+                  {item.name}
+
+                  {isActive && (
+                    <span
+                      className="
+                        h-2 w-2
+                        rounded-full
+                        bg-[#F5812D]
+                      "
+                    />
+                  )}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+
+        {/* Mobile CTA */}
+        <Link
+          href="/#contact"
+          onClick={() => setNav(false)}
+          className="
+            mt-7 inline-flex
+            items-center justify-center
+            gap-3 rounded-xl
+            bg-[#018A7C]
+            px-6 py-4
+            text-sm font-semibold
+            text-white
+            transition duration-300
+            hover:bg-[#007366]
+          "
+        >
+          Start a Project
+          <FaArrowRight aria-hidden="true" />
+        </Link>
+
+        {/* Social links */}
+        <div className="mt-auto pt-10">
+          <p
+            className="
+              text-xs font-bold
+              uppercase tracking-widest
+              text-[#DC422F]
+              dark:text-[#FF725B]
+            "
+          >
+            Let&apos;s Connect
+          </p>
+
+          <div className="mt-5 flex items-center gap-3">
+            {socialLinks.map((social) => {
+              const Icon = social.icon;
+
+              return (
+                <a
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.name}
+                  title={social.name}
+                  className="
+                    flex h-11 w-11
+                    items-center justify-center
+                    rounded-xl border
+                    border-gray-200
+                    bg-white
+                    text-gray-700
+                    transition duration-300
+                    hover:-translate-y-1
+                    hover:border-[#018A7C]
+                    hover:text-[#018A7C]
+                    dark:border-white/10
+                    dark:bg-[#121126]
+                    dark:text-gray-300
+                    dark:hover:text-[#32B6A5]
+                  "
+                >
+                  <Icon aria-hidden="true" />
+                </a>
+              );
+            })}
+
+            <a
+              href="mailto:mr.asmar.web@gmail.com"
+              aria-label="Email AsmarWeb Studio"
+              className="
+                flex h-11 w-11
+                items-center justify-center
+                rounded-xl border
+                border-gray-200
+                bg-white
+                text-gray-700
+                transition duration-300
+                hover:-translate-y-1
+                hover:border-[#018A7C]
+                hover:text-[#018A7C]
+                dark:border-white/10
+                dark:bg-[#121126]
+                dark:text-gray-300
+                dark:hover:text-[#32B6A5]
+              "
+            >
+              <FaEnvelope aria-hidden="true" />
+            </a>
+          </div>
+
+          <p
+            className="
+              mt-8 text-xs
+              text-gray-500
+              dark:text-gray-400
+            "
+          >
+            © {new Date().getFullYear()} AsmarWeb Studio
+          </p>
+        </div>
+      </aside>
+    </>
   );
 };
 
