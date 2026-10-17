@@ -10,6 +10,8 @@ import {
   FaMapMarkerAlt,
   FaArrowRight,
   FaPaperPlane,
+  FaWhatsapp,
+  FaCheckCircle,
 } from "react-icons/fa";
 
 import { HiOutlineChevronDoubleUp } from "react-icons/hi";
@@ -17,9 +19,27 @@ import { HiOutlineChevronDoubleUp } from "react-icons/hi";
 import ContactImg from "../public/assets/contact.jpg";
 
 /* ==========================================
-   ASMARWEB STUDIO
-   Contact Section
+   ASMARWEB STUDIO — CONTACT
 ========================================== */
+
+const EMAIL = "mr.asmar.web@gmail.com";
+
+const FORM_ENDPOINT =
+  "https://getform.io/f/6f3a52e6-5471-49f4-a62f-39d5faa2c69c";
+
+// Replace with your real WhatsApp number.
+// International format, digits only.
+// Example format: 9715XXXXXXXX
+const WHATSAPP_NUMBER = "971559650283";
+
+const WHATSAPP_MESSAGE =
+  "Hello AsmarWeb Studio! I would like to discuss a project with you.";
+
+const whatsappUrl = WHATSAPP_NUMBER
+  ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+      WHATSAPP_MESSAGE,
+    )}`
+  : null;
 
 const socialLinks = [
   {
@@ -49,41 +69,58 @@ const projectTypes = [
   "Other",
 ];
 
-const Contact = () => {
+const inputClass = `
+  w-full rounded-xl
+  border border-gray-200
+  bg-[#F8FAF9]
+  px-4 py-3.5
+  text-sm text-[#030017]
+  outline-none
+  transition-all
+  placeholder:text-gray-400
+  focus:border-[#018A7C]
+  focus:ring-2
+  focus:ring-[#018A7C]/15
+  dark:border-white/10
+  dark:bg-[#121126]
+  dark:text-white
+  dark:focus:border-[#32B6A5]
+`;
+
+const labelClass = "mb-2 block text-sm font-semibold";
+
+function Contact() {
   return (
     <section
       id="contact"
       aria-labelledby="contact-heading"
       className="
-        relative w-full overflow-hidden
+        relative overflow-hidden
         bg-white py-20
         text-[#030017]
-        transition-colors duration-300
         dark:bg-[#030017]
         dark:text-white
         md:py-28
       "
     >
-      {/* Decorative background */}
+      {/* Decorative backgrounds */}
       <div
         aria-hidden="true"
         className="
-          pointer-events-none absolute
-          -right-32 top-10
+          pointer-events-none
+          absolute -right-32 top-10
           h-96 w-96 rounded-full
           bg-[#018A7C]/10 blur-3xl
-          dark:bg-[#018A7C]/15
         "
       />
 
       <div
         aria-hidden="true"
         className="
-          pointer-events-none absolute
-          -left-32 bottom-0
-          h-72 w-72 rounded-full
+          pointer-events-none
+          absolute -bottom-20 -left-32
+          h-80 w-80 rounded-full
           bg-[#DC422F]/10 blur-3xl
-          dark:bg-[#DC422F]/10
         "
       />
 
@@ -106,8 +143,8 @@ const Contact = () => {
 
           <p className="studio-description mt-5">
             Have a project in mind, need a creative solution, or want to
-            collaborate with our studio? Tell us about your idea and let&apos;s
-            explore what we can create together.
+            collaborate? Share your ideas and let&apos;s explore what we can
+            build together.
           </p>
         </div>
 
@@ -118,16 +155,12 @@ const Contact = () => {
             lg:grid-cols-5
           "
         >
-          {/* LEFT — Studio information */}
+          {/* ==================================
+              LEFT — CONTACT INFORMATION
+          ================================== */}
           <div className="lg:col-span-2">
-            <div
-              className="
-                studio-card h-full
-                overflow-hidden p-5
-                sm:p-6
-              "
-            >
-              {/* Contact image */}
+            <div className="studio-card h-full p-5 sm:p-6">
+              {/* Image */}
               <div className="overflow-hidden rounded-2xl">
                 <Image
                   src={ContactImg}
@@ -139,14 +172,9 @@ const Contact = () => {
                 />
               </div>
 
+              {/* Studio introduction */}
               <div className="mt-7">
-                <h3
-                  className="
-                    text-2xl font-extrabold
-                    text-[#030017]
-                    dark:text-white
-                  "
-                >
+                <h3 className="text-2xl font-extrabold">
                   AsmarWeb{" "}
                   <span
                     className="
@@ -176,23 +204,23 @@ const Contact = () => {
                   "
                 >
                   We help businesses and creators bring ideas to life through
-                  software development, creative design, branding, and digital
+                  software development, web design, branding, and digital
                   experiences.
                 </p>
               </div>
 
-              {/* Contact details */}
+              {/* Email */}
               <div
                 className="
-                  mt-7 space-y-5
-                  border-t border-gray-200
-                  pt-7 dark:border-white/10
+                  mt-7 border-t
+                  border-gray-200 pt-7
+                  dark:border-white/10
                 "
               >
                 <div className="flex items-start gap-4">
-                  <span
+                  <div
                     className="
-                      flex h-11 w-11
+                      flex h-12 w-12
                       shrink-0 items-center
                       justify-center rounded-xl
                       bg-[#018A7C]/10
@@ -200,31 +228,31 @@ const Contact = () => {
                       dark:text-[#32B6A5]
                     "
                   >
-                    <FaEnvelope aria-hidden="true" />
-                  </span>
+                    <FaEnvelope size={19} />
+                  </div>
 
                   <div className="min-w-0">
                     <p className="text-sm font-bold">Email Us</p>
 
                     <a
-                      href="mailto:mr.asmar.web@gmail.com"
+                      href={`mailto:${EMAIL}`}
                       className="
-                        break-all text-sm
-                        text-gray-600
+                        mt-1 block break-all
+                        text-sm text-gray-600
                         hover:text-[#018A7C]
                         dark:text-gray-300
-                        dark:hover:text-[#32B6A5]
                       "
                     >
-                      mr.asmar.web@gmail.com
+                      {EMAIL}
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4">
-                  <span
+                {/* Location */}
+                <div className="mt-6 flex items-start gap-4">
+                  <div
                     className="
-                      flex h-11 w-11
+                      flex h-12 w-12
                       shrink-0 items-center
                       justify-center rounded-xl
                       bg-[#DC422F]/10
@@ -232,8 +260,8 @@ const Contact = () => {
                       dark:text-[#FF725B]
                     "
                   >
-                    <FaMapMarkerAlt aria-hidden="true" />
-                  </span>
+                    <FaMapMarkerAlt size={19} />
+                  </div>
 
                   <div>
                     <p className="text-sm font-bold">Based In</p>
@@ -261,7 +289,85 @@ const Contact = () => {
                 </div>
               </div>
 
-              {/* Social media */}
+              {/* ==================================
+                  WHATSAPP CONTACT
+              ================================== */}
+              <div
+                className="
+                  mt-8 rounded-2xl
+                  border border-[#25D366]/25
+                  bg-[#25D366]/5 p-5
+                "
+              >
+                <div className="flex items-start gap-3">
+                  <div
+                    className="
+                      flex h-12 w-12
+                      shrink-0 items-center
+                      justify-center rounded-xl
+                      bg-[#25D366]/15
+                      text-[#128C7E]
+                      dark:text-[#25D366]
+                    "
+                  >
+                    <FaWhatsapp size={25} />
+                  </div>
+
+                  <div>
+                    <h4 className="text-base font-bold">Chat on WhatsApp</h4>
+
+                    <p
+                      className="
+                        mt-2 text-sm leading-7
+                        text-gray-600
+                        dark:text-gray-300
+                      "
+                    >
+                      Prefer a quick conversation? Reach out to discuss your
+                      project directly.
+                    </p>
+                  </div>
+                </div>
+
+                {whatsappUrl ? (
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="
+                      mt-5 inline-flex w-full
+                      items-center justify-center
+                      gap-3 rounded-xl
+                      bg-[#128C7E]
+                      px-5 py-3.5
+                      text-sm font-bold
+                      text-white
+                      transition-colors
+                      hover:bg-[#075E54]
+                    "
+                  >
+                    <FaWhatsapp size={20} />
+                    Start WhatsApp Chat
+                    <FaArrowRight size={12} />
+                  </a>
+                ) : (
+                  <p
+                    className="
+                      mt-5 rounded-xl
+                      border border-dashed
+                      border-[#128C7E]/30
+                      px-4 py-3
+                      text-center text-xs
+                      text-gray-600
+                      dark:text-gray-300
+                    "
+                  >
+                    WhatsApp contact will be available soon.
+                  </p>
+                )}
+              </div>
+
+              {/* Social links */}
               <div
                 className="
                   mt-8 border-t
@@ -299,7 +405,7 @@ const Contact = () => {
                           border-gray-200
                           bg-white text-lg
                           text-gray-700
-                          transition duration-300
+                          transition-all duration-300
                           hover:-translate-y-1
                           hover:border-[#018A7C]
                           hover:text-[#018A7C]
@@ -307,7 +413,6 @@ const Contact = () => {
                           dark:bg-[#030017]
                           dark:text-gray-300
                           dark:hover:border-[#32B6A5]
-                          dark:hover:text-[#32B6A5]
                         "
                       >
                         <Icon aria-hidden="true" />
@@ -317,7 +422,7 @@ const Contact = () => {
                 </div>
               </div>
 
-              {/* Collaboration link */}
+              {/* Collaboration */}
               <div
                 className="
                   mt-8 rounded-2xl
@@ -337,11 +442,13 @@ const Contact = () => {
                   "
                 >
                   We welcome developers, designers, and creative professionals
-                  interested in collaborating on projects.
+                  interested in collaboration.
                 </p>
 
                 <a
-                  href="mailto:mr.asmar.web@gmail.com?subject=Join%20AsmarWeb%20Studio"
+                  href={`mailto:${EMAIL}?subject=${encodeURIComponent(
+                    "Join AsmarWeb Studio",
+                  )}`}
                   className="
                     mt-4 inline-flex
                     items-center gap-2
@@ -352,29 +459,55 @@ const Contact = () => {
                   "
                 >
                   Apply to Collaborate
-                  <FaArrowRight aria-hidden="true" />
+                  <FaArrowRight size={13} />
                 </a>
               </div>
             </div>
           </div>
 
-          {/* RIGHT — Contact form */}
+          {/* ==================================
+              RIGHT — CONTACT FORM
+          ================================== */}
           <div className="lg:col-span-3">
             <div className="studio-card h-full p-6 sm:p-8">
               <div className="mb-8">
-                <h3 className="text-2xl font-bold">
+                <span
+                  className="
+                    inline-flex items-center gap-2
+                    text-xs font-bold
+                    uppercase tracking-widest
+                    text-[#018A7C]
+                    dark:text-[#32B6A5]
+                  "
+                >
+                  <FaCheckCircle size={13} />
+                  Project Enquiry
+                </span>
+
+                <h3
+                  className="
+                    mt-4 text-2xl
+                    font-extrabold
+                    sm:text-3xl
+                  "
+                >
                   Tell Us About Your Project
                 </h3>
 
-                <p className="studio-description mt-3 text-sm">
-                  Complete the form below to send your inquiry to our studio.
+                <p
+                  className="
+                    mt-3 text-sm leading-7
+                    text-gray-600
+                    dark:text-gray-300
+                  "
+                >
+                  Fill in the form below. Your enquiry will be submitted to our
+                  contact form service.
                 </p>
               </div>
 
-              <form
-                action="https://getform.io/f/6f3a52e6-5471-49f4-a62f-39d5faa2c69c"
-                method="POST"
-              >
+              <form action={FORM_ENDPOINT} method="POST" acceptCharset="UTF-8">
+                {/* Metadata */}
                 <input
                   type="hidden"
                   name="source"
@@ -383,95 +516,71 @@ const Contact = () => {
 
                 <div
                   className="
-                    grid grid-cols-1 gap-5
-                    md:grid-cols-2
+                    grid grid-cols-1
+                    gap-5 md:grid-cols-2
                   "
                 >
-                  {/* Name */}
+                  {/* Full name */}
                   <div>
-                    <label
-                      htmlFor="contact-name"
-                      className="
-                        mb-2 block text-sm
-                        font-semibold
-                      "
-                    >
+                    <label htmlFor="contact-name" className={labelClass}>
                       Full Name *
                     </label>
 
                     <input
                       id="contact-name"
-                      className="studio-input"
-                      type="text"
                       name="name"
+                      type="text"
                       placeholder="Your full name"
                       autoComplete="name"
+                      className={inputClass}
                       required
                     />
                   </div>
 
                   {/* Phone */}
                   <div>
-                    <label
-                      htmlFor="contact-phone"
-                      className="
-                        mb-2 block text-sm
-                        font-semibold
-                      "
-                    >
+                    <label htmlFor="contact-phone" className={labelClass}>
                       Phone / WhatsApp
                     </label>
 
                     <input
                       id="contact-phone"
-                      className="studio-input"
-                      type="tel"
                       name="phone"
+                      type="tel"
                       placeholder="+971 ..."
                       autoComplete="tel"
+                      className={inputClass}
                     />
                   </div>
 
                   {/* Email */}
                   <div>
-                    <label
-                      htmlFor="contact-email"
-                      className="
-                        mb-2 block text-sm
-                        font-semibold
-                      "
-                    >
+                    <label htmlFor="contact-email" className={labelClass}>
                       Email Address *
                     </label>
 
                     <input
                       id="contact-email"
-                      className="studio-input"
-                      type="email"
                       name="email"
+                      type="email"
                       placeholder="you@example.com"
                       autoComplete="email"
+                      className={inputClass}
                       required
                     />
                   </div>
 
                   {/* Service */}
                   <div>
-                    <label
-                      htmlFor="contact-service"
-                      className="
-                        mb-2 block text-sm
-                        font-semibold
-                      "
-                    >
+                    <label htmlFor="contact-service" className={labelClass}>
                       Service / Inquiry Type *
                     </label>
 
                     <select
                       id="contact-service"
                       name="service"
-                      className="studio-input"
                       defaultValue=""
+                      className={inputClass}
                       required
                     >
                       <option value="" disabled>
@@ -489,47 +598,32 @@ const Contact = () => {
 
                 {/* Subject */}
                 <div className="mt-5">
-                  <label
-                    htmlFor="contact-subject"
-                    className="
-                      mb-2 block text-sm
-                      font-semibold
-                    "
-                  >
+                  <label htmlFor="contact-subject" className={labelClass}>
                     Subject *
                   </label>
 
                   <input
                     id="contact-subject"
-                    className="studio-input"
-                    type="text"
                     name="subject"
+                    type="text"
                     placeholder="How can we help?"
+                    className={inputClass}
                     required
                   />
                 </div>
 
                 {/* Message */}
                 <div className="mt-5">
-                  <label
-                    htmlFor="contact-message"
-                    className="
-                      mb-2 block text-sm
-                      font-semibold
-                    "
-                  >
+                  <label htmlFor="contact-message" className={labelClass}>
                     Project Details *
                   </label>
 
                   <textarea
                     id="contact-message"
-                    className="
-                      studio-input min-h-[180px]
-                      resize-y
-                    "
-                    rows={7}
                     name="message"
-                    placeholder="Tell us about your project, goals, timeline, or collaboration idea..."
+                    rows={7}
+                    placeholder="Tell us about your project, goals, timeline, budget, or collaboration idea..."
+                    className={`${inputClass} min-h-[180px] resize-y`}
                     required
                   />
                 </div>
@@ -538,13 +632,13 @@ const Contact = () => {
                 <div className="mt-6 flex items-start gap-3">
                   <input
                     id="contact-consent"
-                    type="checkbox"
                     name="consent"
+                    type="checkbox"
                     value="yes"
                     required
                     className="
                       mt-1 h-4 w-4
-                      accent-[#018A7C]
+                      shrink-0 accent-[#018A7C]
                     "
                   />
 
@@ -556,7 +650,7 @@ const Contact = () => {
                       dark:text-gray-300
                     "
                   >
-                    I agree to be contacted regarding my inquiry.
+                    I agree to be contacted regarding my enquiry.
                   </label>
                 </div>
 
@@ -573,7 +667,7 @@ const Contact = () => {
                     font-semibold text-white
                     shadow-lg
                     shadow-[#018A7C]/20
-                    transition duration-300
+                    transition-all duration-300
                     hover:-translate-y-1
                     hover:bg-[#007366]
                     focus-visible:outline
@@ -594,10 +688,75 @@ const Contact = () => {
                     dark:text-gray-400
                   "
                 >
-                  Your message will be submitted securely over HTTPS to our
-                  contact form provider.
+                  Your information is submitted over HTTPS to our form provider.
+                  Email notifications depend on the provider&apos;s settings.
                 </p>
               </form>
+
+              {/* Alternative contact */}
+              <div
+                className="
+                  mt-8 border-t
+                  border-gray-200 pt-7
+                  text-center
+                  dark:border-white/10
+                "
+              >
+                <p
+                  className="
+                    text-sm text-gray-600
+                    dark:text-gray-300
+                  "
+                >
+                  Prefer contacting us directly?
+                </p>
+
+                <div
+                  className="
+                    mt-4 flex flex-wrap
+                    justify-center gap-3
+                  "
+                >
+                  <a
+                    href={`mailto:${EMAIL}`}
+                    className="
+                      inline-flex items-center
+                      gap-2 rounded-xl
+                      border border-gray-200
+                      px-5 py-3
+                      text-sm font-semibold
+                      transition-colors
+                      hover:border-[#018A7C]
+                      hover:text-[#018A7C]
+                      dark:border-white/10
+                    "
+                  >
+                    <FaEnvelope />
+                    Send an Email
+                  </a>
+
+                  {whatsappUrl && (
+                    <a
+                      href={whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="
+                        inline-flex items-center
+                        gap-2 rounded-xl
+                        bg-[#128C7E]
+                        px-5 py-3
+                        text-sm font-semibold
+                        text-white
+                        transition-colors
+                        hover:bg-[#075E54]
+                      "
+                    >
+                      <FaWhatsapp size={18} />
+                      WhatsApp
+                    </a>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -610,11 +769,12 @@ const Contact = () => {
             className="
               flex h-14 w-14
               items-center justify-center
-              rounded-full border
-              border-gray-200
-              bg-white text-[#018A7C]
+              rounded-full
+              border border-gray-200
+              bg-white
+              text-[#018A7C]
               shadow-lg
-              transition duration-300
+              transition-all duration-300
               hover:-translate-y-1
               hover:border-[#018A7C]
               dark:border-white/10
@@ -628,6 +788,6 @@ const Contact = () => {
       </div>
     </section>
   );
-};
+}
 
 export default Contact;
