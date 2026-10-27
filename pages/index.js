@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 import Main from "../components/Main";
 import About from "../components/About";
@@ -8,12 +9,21 @@ import Contact from "../components/Contact";
 
 // AsmarWeb Studio — Homepage
 export default function Home() {
+  const { locale } = useRouter();
+  const isArabic = locale === "ar";
+
   const site = {
     name: "AsmarWeb Studio",
-    title: "AsmarWeb Studio | Development, Design & Digital Solutions",
-    description:
-      "AsmarWeb Studio is a creative technology studio specializing in web development, software platforms, UI/UX design, branding, and digital solutions in the UAE.",
+    title: isArabic
+      ? "أسمار ويب ستوديو | تطوير المواقع والتصميم والحلول الرقمية"
+      : "AsmarWeb Studio | Development, Design & Digital Solutions",
+    description: isArabic
+      ? "أسمار ويب ستوديو استوديو إبداعي وتقني في الإمارات متخصص في تطوير المواقع والمنصات الرقمية وتصميم واجهات المستخدم والهويات التجارية والحلول الرقمية."
+      : "AsmarWeb Studio is a creative technology studio specializing in web development, software platforms, UI/UX design, branding, and digital solutions in the UAE.",
     url: "https://asmarweb.vercel.app",
+    canonical: isArabic
+      ? "https://asmarweb.vercel.app/ar"
+      : "https://asmarweb.vercel.app/",
     keywords:
       "AsmarWeb Studio, Web Development UAE, Laravel Developer, UI UX Design, Branding, Software Development, Creative Studio, Open Source",
   };
@@ -33,15 +43,18 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         {/* Canonical */}
-        <link rel="canonical" href={site.url} />
+        <link rel="canonical" href={site.canonical} />
+        <link rel="alternate" hrefLang="en" href={`${site.url}/`} />
+        <link rel="alternate" hrefLang="ar" href={`${site.url}/ar`} />
+        <link rel="alternate" hrefLang="x-default" href={`${site.url}/`} />
 
         {/* Open Graph */}
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content={site.name} />
         <meta property="og:title" content={site.title} />
         <meta property="og:description" content={site.description} />
-        <meta property="og:url" content={site.url} />
-        <meta property="og:locale" content="en_US" />
+        <meta property="og:url" content={site.canonical} />
+        <meta property="og:locale" content={isArabic ? "ar_AE" : "en_US"} />
 
         {/* Twitter / X */}
         <meta name="twitter:card" content="summary" />

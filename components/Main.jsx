@@ -123,7 +123,7 @@ const Main = () => {
                 bg-[#F5812D]
               "
             />
-            Creative & Technology Studio
+            {uiText("Creative & Technology Studio")}
           </div>
 
           {/* Main heading */}
@@ -159,10 +159,10 @@ const Main = () => {
             <Typewriter
               options={{
                 strings: [
-                  "We Build Digital Experiences.",
-                  "We Design Creative Brands.",
-                  "We Develop Smart Solutions.",
-                  "We Innovate Together.",
+                  uiText("We Build Digital Experiences."),
+                  uiText("We Design Creative Brands."),
+                  uiText("We Develop Smart Solutions."),
+                  uiText("We Innovate Together."),
                 ],
                 autoStart: true,
                 loop: true,
@@ -182,10 +182,7 @@ const Main = () => {
               lg:mx-0 lg:text-lg
             "
           >
-            We are a creative technology studio specializing in web development,
-            software platforms, UI/UX design, branding, and digital solutions.
-            We bring developers, designers, and creative minds together to
-            transform ideas into meaningful digital experiences.
+            {uiText("We are a creative technology studio specializing in web development, software platforms, UI/UX design, branding, and digital solutions. We bring developers, designers, and creative minds together to transform ideas into meaningful digital experiences.")}
           </p>
 
           {/* Action buttons */}
@@ -214,7 +211,7 @@ const Main = () => {
                 hover:bg-[#007366]
               "
             >
-              Explore Our Work
+              {uiText("Explore Our Work")}
               <FaArrowRight aria-hidden="true" />
             </Link>
 
@@ -238,7 +235,7 @@ const Main = () => {
                 dark:hover:text-[#FF725B]
               "
             >
-              Start a Project
+              {uiText("Start a Project")}
             </Link>
           </div>
 

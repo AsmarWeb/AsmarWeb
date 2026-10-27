@@ -134,9 +134,7 @@ const Footer = () => {
                 dark:text-gray-300
               "
             >
-              An independent creative technology studio building digital
-              platforms, designing brands, and creating meaningful digital
-              experiences.
+              {uiText("An independent creative technology studio building digital platforms, designing brands, and creating meaningful digital experiences.")}
             </p>
 
             <div
@@ -196,7 +194,7 @@ const Footer = () => {
 
           {/* COLUMN 2: Quick links */}
           <div>
-            <h3 className="text-lg font-bold">Quick Links</h3>
+            <h3 className="text-lg font-bold">{uiText("Quick Links")}</h3>
 
             <div
               className="
@@ -207,7 +205,7 @@ const Footer = () => {
 
             <ul className="mt-7 space-y-4">
               {quickLinks.map((item) => (
-                <li key={uiText(item.name)}>
+                <li key={item.name}>
                   <Link
                     href={item.href}
                     className="
@@ -235,7 +233,7 @@ const Footer = () => {
 
           {/* COLUMN 3: Services */}
           <div>
-            <h3 className="text-lg font-bold">Our Services</h3>
+            <h3 className="text-lg font-bold">{uiText("Our Services")}</h3>
 
             <div
               className="
@@ -247,7 +245,7 @@ const Footer = () => {
             <ul className="mt-7 space-y-4">
               {services.map((service) => (
                 <li
-                  key={uiText(service)}
+                  key={service}
                   className="
                     text-sm text-gray-600
                     dark:text-gray-300
@@ -261,7 +259,7 @@ const Footer = () => {
 
           {/* COLUMN 4: Contact */}
           <div>
-            <h3 className="text-lg font-bold">Get In Touch</h3>
+            <h3 className="text-lg font-bold">{uiText("Get In Touch")}</h3>
 
             <div
               className="
@@ -309,7 +307,7 @@ const Footer = () => {
                 />
 
                 <span>
-                  United Arab Emirates
+                  {uiText("United Arab Emirates")}
                   <span
                     className="
                       mt-1 block text-xs
@@ -317,7 +315,7 @@ const Footer = () => {
                       dark:text-gray-400
                     "
                   >
-                    Remote collaboration available
+                    {uiText("Remote collaboration available")}
                   </span>
                 </span>
               </div>
@@ -331,7 +329,7 @@ const Footer = () => {
                 bg-[#018A7C]/5 p-5
               "
             >
-              <p className="text-sm font-bold">Join Our Creative Network</p>
+              <p className="text-sm font-bold">{uiText("Join Our Creative Network")}</p>
 
               <p
                 className="
@@ -340,7 +338,7 @@ const Footer = () => {
                   dark:text-gray-300
                 "
               >
-                Developers and designers are welcome to collaborate with us.
+                {uiText("Developers and designers are welcome to collaborate with us.")}
               </p>
 
               <a
@@ -354,7 +352,7 @@ const Footer = () => {
                   dark:text-[#32B6A5]
                 "
               >
-                Join the Studio
+                {uiText("Join the Studio")}
                 <FaArrowRight size={12} aria-hidden="true" />
               </a>
             </div>
