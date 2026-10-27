@@ -1,3 +1,4 @@
+import useUiText from "../hooks/useUiText";
 import React from "react";
 import Image from "next/legacy/image";
 import Link from "next/link";
@@ -157,6 +158,7 @@ const SkillCard = ({ skill }) => {
 };
 
 const Skills = () => {
+  const uiText = useUiText();
   return (
     <section
       id="skills"
@@ -262,7 +264,7 @@ const Skills = () => {
                         sm:text-2xl
                       "
                     >
-                      {group.title}
+                      {uiText(group.title)}
                     </h3>
 
                     <p
@@ -273,7 +275,7 @@ const Skills = () => {
                         dark:text-gray-300
                       "
                     >
-                      {group.description}
+                      {uiText(group.description)}
                     </p>
                   </div>
                 </div>

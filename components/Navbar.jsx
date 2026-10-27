@@ -77,8 +77,8 @@ const Navbar = () => {
         return;
       }
 
-      const sections = navLinks
-        .map((item) => document.getElementById(item.id))
+      const sections = ["home", "about", "skills", "projects", "contact"]
+        .map((id) => document.getElementById(id))
         .filter(Boolean);
 
       const currentPosition = window.scrollY + 140;

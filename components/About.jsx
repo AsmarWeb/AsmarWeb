@@ -1,3 +1,4 @@
+import useUiText from "../hooks/useUiText";
 import React from "react";
 import Image from "next/legacy/image";
 import Link from "next/link";
@@ -46,6 +47,7 @@ const strengths = [
 ];
 
 const About = () => {
+  const uiText = useUiText();
   return (
     <section
       id="about"
@@ -256,7 +258,7 @@ const About = () => {
 
                 return (
                   <div
-                    key={item.title}
+                    key={uiText(item.title)}
                     className="
                       flex items-center
                       gap-3 rounded-xl
@@ -288,7 +290,7 @@ const About = () => {
                         dark:text-white
                       "
                     >
-                      {item.title}
+                      {uiText(item.title)}
                     </span>
                   </div>
                 );

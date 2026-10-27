@@ -32,3 +32,5 @@ yarn-error.log*
 .vercel
 
 *.cache
+# Local translation backups
+.i18n-backup/
