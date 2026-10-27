@@ -307,3 +307,21 @@ html[lang="ar"],
     transition-duration: 0.01ms !important;
   }
 }
+
+
+/* AsmarWeb Studio bilingual support */
+html[lang="ar"] {
+  font-family: Tahoma, Arial, sans-serif;
+}
+html[lang="ar"] body {
+  font-family: Tahoma, Arial, sans-serif;
+}
+html[lang="en"] {
+  font-family: Inter, Arial, sans-serif;
+}
+html[dir="rtl"] {
+  direction: rtl;
+}
+html[dir="ltr"] {
+  direction: ltr;
+}

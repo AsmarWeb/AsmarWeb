@@ -1,3 +1,4 @@
+import useTranslation from "../hooks/useTranslation";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/legacy/image";
@@ -20,13 +21,7 @@ import NavLogo from "../public/assets/navLogo.png";
    Responsive Navigation
 ========================================== */
 
-const navLinks = [
-  { name: "Home", href: "/#home", id: "home" },
-  { name: "About", href: "/#about", id: "about" },
-  { name: "Skills", href: "/#skills", id: "skills" },
-  { name: "Projects", href: "/#projects", id: "projects" },
-  { name: "Contact", href: "/#contact", id: "contact" },
-];
+
 
 const socialLinks = [
   {
@@ -52,6 +47,25 @@ const Navbar = () => {
   const [activeSection, setActiveSection] = useState("home");
 
   const router = useRouter();
+
+  const { t, locale } = useTranslation();
+
+  const navLinks = [
+    { name: t("nav.home"), href: "/#home", id: "home" },
+    { name: t("nav.about"), href: "/#about", id: "about" },
+    { name: t("nav.skills"), href: "/#skills", id: "skills" },
+    { name: t("nav.projects"), href: "/#projects", id: "projects" },
+    { name: t("nav.contact"), href: "/#contact", id: "contact" },
+  ];
+
+  const changeLanguage = (nextLocale) => {
+    setNav(false);
+    router.push(router.asPath, router.asPath, {
+      locale: nextLocale,
+      scroll: false,
+    });
+  };
+
 
   /* Detect scrolling */
   useEffect(() => {
@@ -305,11 +319,36 @@ const Navbar = () => {
                 lg:inline-flex
               "
             >
-              Let&apos;s Talk
+              {t("nav.letsTalk")}
               <FaArrowRight size={12} aria-hidden="true" />
             </Link>
 
-            {/* Mobile menu toggle */}
+            
+            <div
+              className="flex items-center gap-1 rounded-full
+                         border border-gray-200 p-1
+                         dark:border-white/10"
+              role="group"
+              aria-label="Select language"
+            >
+              {["en", "ar"].map((lang) => (
+                <button
+                  key={lang}
+                  type="button"
+                  onClick={() => changeLanguage(lang)}
+                  aria-pressed={locale === lang}
+                  className={`rounded-full px-3 py-2
+                    text-xs font-bold transition-colors
+                    ${locale === lang
+                      ? "bg-[#018A7C] text-white"
+                      : "text-gray-600 dark:text-gray-300"}`}
+                >
+                  {lang.toUpperCase()}
+                </button>
+              ))}
+            </div>
+
+{/* Mobile menu toggle */}
             <button
               type="button"
               onClick={() => setNav(!nav)}
@@ -360,7 +399,7 @@ const Navbar = () => {
         id="studio-mobile-menu"
         aria-label="Mobile navigation"
         aria-hidden={!nav}
-        inert={!nav}
+        inert={nav ? undefined : ""}
         className={`
           fixed left-0 top-0 z-[120]
           flex h-[100dvh]
@@ -437,7 +476,7 @@ const Navbar = () => {
         >
           Build. Design. Innovate.
           <span className="mt-1 block">
-            Creative technology solutions for ambitious ideas.
+            {t("nav.tagline")}
           </span>
         </p>
 
@@ -508,7 +547,7 @@ const Navbar = () => {
             hover:bg-[#007366]
           "
         >
-          Start a Project
+          {t("nav.startProject")}
           <FaArrowRight aria-hidden="true" />
         </Link>
 
@@ -522,7 +561,7 @@ const Navbar = () => {
               dark:text-[#FF725B]
             "
           >
-            Let&apos;s Connect
+            {t("nav.connect")}
           </p>
 
           <div className="mt-5 flex items-center gap-3">

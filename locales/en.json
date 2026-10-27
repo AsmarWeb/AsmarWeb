@@ -1,0 +1,28 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact",
+    "letsTalk": "Let's Talk",
+    "startProject": "Start a Project",
+    "connect": "Let's Connect",
+    "tagline": "Creative technology solutions for ambitious ideas."
+  },
+  "hero": {
+    "title": "Creative Design & Digital Experiences",
+    "description": "We build modern websites, digital platforms, and creative solutions.",
+    "viewProjects": "View Projects",
+    "contactUs": "Contact Us"
+  },
+  "contact": {
+    "title": "Let's Build Something Remarkable",
+    "name": "Full Name",
+    "email": "Email Address",
+    "phone": "Phone / WhatsApp",
+    "subject": "Subject",
+    "message": "Project Details",
+    "send": "Send Message"
+  }
+}
