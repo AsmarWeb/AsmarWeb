@@ -234,5 +234,149 @@
   "by AsmarWeb Studio": {
     "en": "by AsmarWeb Studio",
     "ar": "بواسطة AsmarWeb Studio"
+  },
+  "All Projects": {
+    "en": "All Projects",
+    "ar": "جميع المشاريع"
+  },
+  "WordPress": {
+    "en": "WordPress",
+    "ar": "ووردبريس"
+  },
+  "Software Platform": {
+    "en": "Software Platform",
+    "ar": "منصة برمجية"
+  },
+  "Collaboration / Join the Studio": {
+    "en": "Collaboration / Join the Studio",
+    "ar": "التعاون / الانضمام للاستوديو"
+  },
+  "Other": {
+    "en": "Other",
+    "ar": "أخرى"
+  },
+  "Web Developer | UI/UX Designer | Digital Creative": {
+    "en": "Web Developer | UI/UX Designer | Digital Creative",
+    "ar": "مطور ويب | مصمم واجهات وتجربة المستخدم | مبدع رقمي"
+  },
+  "Digital Solutions": {
+    "en": "Digital Solutions",
+    "ar": "الحلول الرقمية"
+  },
+  "Frontend Development": {
+    "en": "Frontend Development",
+    "ar": "تطوير الواجهات الأمامية"
+  },
+  "Platforms & Services": {
+    "en": "Platforms & Services",
+    "ar": "المنصات والخدمات"
+  },
+  "Development Workflow": {
+    "en": "Development Workflow",
+    "ar": "سير عمل التطوير"
+  },
+  "Technologies for building responsive and interactive web experiences.": {
+    "en": "Technologies for building responsive and interactive web experiences.",
+    "ar": "تقنيات لبناء تجارب ويب تفاعلية ومتجاوبة."
+  },
+  "Tools and services used in application development.": {
+    "en": "Tools and services used in application development.",
+    "ar": "أدوات وخدمات تُستخدم في تطوير التطبيقات."
+  },
+  "Tools that support version control and collaborative development.": {
+    "en": "Tools that support version control and collaborative development.",
+    "ar": "أدوات لإدارة إصدارات الشيفرة والتطوير التعاوني."
+  },
+  "A creative interface concept focused on visual design and user experience.": {
+    "en": "A creative interface concept focused on visual design and user experience.",
+    "ar": "تصور إبداعي لواجهة يركز على التصميم البصري وتجربة المستخدم."
+  },
+  "A modern storefront hero section designed for an engaging shopping experience.": {
+    "en": "A modern storefront hero section designed for an engaging shopping experience.",
+    "ar": "واجهة رئيسية حديثة لمتجر إلكتروني تقدم تجربة تسوق جذابة."
+  },
+  "A responsive landing page showcasing front-end layout and styling.": {
+    "en": "A responsive landing page showcasing front-end layout and styling.",
+    "ar": "صفحة هبوط متجاوبة تعرض مهارات تصميم وتنسيق الواجهات."
+  },
+  "A furniture-focused website project built around product presentation.": {
+    "en": "A furniture-focused website project built around product presentation.",
+    "ar": "مشروع موقع للأثاث يركز على عرض المنتجات."
+  },
+  "A digital interface design project focused on a clear visual experience.": {
+    "en": "A digital interface design project focused on a clear visual experience.",
+    "ar": "مشروع تصميم واجهة رقمية يركز على تجربة بصرية واضحة."
+  },
+  "A web development project combining interactive front-end features with PHP.": {
+    "en": "A web development project combining interactive front-end features with PHP.",
+    "ar": "مشروع تطوير ويب يجمع بين واجهات تفاعلية وتقنية PHP."
+  },
+  "A fashion-inspired website interface concept focused on visual design and user experience.": {
+    "en": "A fashion-inspired website interface concept focused on visual design and user experience.",
+    "ar": "تصميم واجهة موقع مستوحى من عالم الأزياء يركز على المظهر وتجربة المستخدم."
+  },
+  "A WordPress e-commerce theme showcase exploring product landing pages and shopping experiences.": {
+    "en": "A WordPress e-commerce theme showcase exploring product landing pages and shopping experiences.",
+    "ar": "عرض لقالب متجر ووردبريس يستكشف صفحات المنتجات وتجربة التسوق."
+  },
+  "A product and service landing page showcase with lead capture and product presentation.": {
+    "en": "A product and service landing page showcase with lead capture and product presentation.",
+    "ar": "عرض لصفحة هبوط للمنتجات والخدمات مع نموذج لاستقبال العملاء المحتملين."
+  },
+  "A furniture-focused website project featuring a digital storefront presentation.": {
+    "en": "A furniture-focused website project featuring a digital storefront presentation.",
+    "ar": "مشروع موقع للأثاث يتضمن عرضًا لواجهة متجر رقمي."
+  },
+  "An e-commerce UI/UX concept exploring product presentation and shopping interfaces.": {
+    "en": "An e-commerce UI/UX concept exploring product presentation and shopping interfaces.",
+    "ar": "تصور لواجهة متجر إلكتروني يستكشف عرض المنتجات وواجهات التسوق."
+  },
+  "A web development project featuring JavaScript and PHP technologies.": {
+    "en": "A web development project featuring JavaScript and PHP technologies.",
+    "ar": "مشروع تطوير ويب يستخدم JavaScript وPHP."
+  },
+  "Your full name": {
+    "en": "Your full name",
+    "ar": "اسمك الكامل"
+  },
+  "How can we help?": {
+    "en": "How can we help?",
+    "ar": "كيف يمكننا مساعدتك؟"
+  },
+  "Tell us about your project, goals, timeline, budget, or collaboration idea...": {
+    "en": "Tell us about your project, goals, timeline, budget, or collaboration idea...",
+    "ar": "أخبرنا عن مشروعك وأهدافك والمدة المتوقعة والميزانية أو فكرة التعاون..."
+  },
+  "Search projects...": {
+    "en": "Search projects...",
+    "ar": "ابحث عن المشاريع..."
+  },
+  "Home": {
+    "en": "Home",
+    "ar": "الرئيسية"
+  },
+  "Contact": {
+    "en": "Contact",
+    "ar": "تواصل معنا"
+  },
+  "Professional Profile": {
+    "en": "Professional Profile",
+    "ar": "الملف المهني"
+  },
+  "Core Skills": {
+    "en": "Core Skills",
+    "ar": "المهارات الأساسية"
+  },
+  "Professional Experience": {
+    "en": "Professional Experience",
+    "ar": "الخبرات المهنية"
+  },
+  "Freelance & Creative Work": {
+    "en": "Freelance & Creative Work",
+    "ar": "الأعمال المستقلة والإبداعية"
+  },
+  "Portfolio & Open Source": {
+    "en": "Portfolio & Open Source",
+    "ar": "معرض الأعمال والمشاريع مفتوحة المصدر"
   }
-}\n
+}

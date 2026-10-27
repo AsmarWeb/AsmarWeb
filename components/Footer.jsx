@@ -1,3 +1,4 @@
+import useUiText from "../hooks/useUiText";
 import React from "react";
 import Link from "next/link";
 
@@ -56,6 +57,7 @@ const socialLinks = [
 ];
 
 const Footer = () => {
+  const uiText = useUiText();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -205,7 +207,7 @@ const Footer = () => {
 
             <ul className="mt-7 space-y-4">
               {quickLinks.map((item) => (
-                <li key={item.name}>
+                <li key={uiText(item.name)}>
                   <Link
                     href={item.href}
                     className="
@@ -224,7 +226,7 @@ const Footer = () => {
                       className="text-[#F5812D]"
                       aria-hidden="true"
                     />
-                    {item.name}
+                    {uiText(item.name)}
                   </Link>
                 </li>
               ))}
@@ -245,13 +247,13 @@ const Footer = () => {
             <ul className="mt-7 space-y-4">
               {services.map((service) => (
                 <li
-                  key={service}
+                  key={uiText(service)}
                   className="
                     text-sm text-gray-600
                     dark:text-gray-300
                   "
                 >
-                  {service}
+                  {uiText(service)}
                 </li>
               ))}
             </ul>

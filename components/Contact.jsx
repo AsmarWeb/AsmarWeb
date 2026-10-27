@@ -1,3 +1,4 @@
+import useUiText from "../hooks/useUiText";
 import React from "react";
 import Image from "next/legacy/image";
 import Link from "next/link";
@@ -90,6 +91,7 @@ const inputClass = `
 const labelClass = "mb-2 block text-sm font-semibold";
 
 function Contact() {
+  const uiText = useUiText();
   return (
     <section
       id="contact"
@@ -530,7 +532,7 @@ function Contact() {
                       id="contact-name"
                       name="name"
                       type="text"
-                      placeholder="Your full name"
+                      placeholder={uiText("Your full name")}
                       autoComplete="name"
                       className={inputClass}
                       required
@@ -589,7 +591,7 @@ function Contact() {
 
                       {projectTypes.map((type) => (
                         <option key={type} value={type}>
-                          {type}
+                          {uiText(type)}
                         </option>
                       ))}
                     </select>
@@ -606,7 +608,7 @@ function Contact() {
                     id="contact-subject"
                     name="subject"
                     type="text"
-                    placeholder="How can we help?"
+                    placeholder={uiText("How can we help?")}
                     className={inputClass}
                     required
                   />
@@ -622,7 +624,7 @@ function Contact() {
                     id="contact-message"
                     name="message"
                     rows={7}
-                    placeholder="Tell us about your project, goals, timeline, budget, or collaboration idea..."
+                    placeholder={uiText("Tell us about your project, goals, timeline, budget, or collaboration idea...")}
                     className={`${inputClass} min-h-[180px] resize-y`}
                     required
                   />

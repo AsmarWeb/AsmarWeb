@@ -1,3 +1,4 @@
+import useUiText from "../hooks/useUiText";
 import React, { useMemo, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
@@ -97,6 +98,7 @@ const categories = [
 ];
 
 const ListPage = () => {
+  const uiText = useUiText();
   const router = useRouter();
 
   const [activeCategory, setActiveCategory] = useState("All Projects");
@@ -364,8 +366,8 @@ const ListPage = () => {
                   type="search"
                   value={displayedSearch}
                   onChange={(event) => updateSearch(event.target.value)}
-                  placeholder="Search projects..."
-                  aria-label="Search projects"
+                  placeholder={uiText("Search projects...")}
+                  aria-label={uiText("Search projects")}
                   className="
                     w-full rounded-xl
                     border border-gray-200
@@ -450,7 +452,7 @@ const ListPage = () => {
                       }
                     `}
                   >
-                    {category}
+                    {uiText(category)}
                   </button>
                 );
               })}
@@ -525,8 +527,8 @@ const ListPage = () => {
                     backgroundImg={project.backgroundImg}
                     tech={project.tech}
                     projectUrl={project.projectUrl}
-                    category={project.category}
-                    description={project.description}
+                    category={uiText(project.category)}
+                    description={uiText(project.description)}
                   />
                 ))}
               </div>

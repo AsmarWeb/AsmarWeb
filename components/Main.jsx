@@ -1,3 +1,4 @@
+import useUiText from "../hooks/useUiText";
 import React from "react";
 import Link from "next/link";
 import Image from "next/legacy/image";
@@ -54,6 +55,7 @@ const socialLinks = [
 ];
 
 const Main = () => {
+  const uiText = useUiText();
   return (
     <section
       id="home"
@@ -306,7 +308,7 @@ const Main = () => {
 
               return (
                 <div
-                  key={service.title}
+                  key={uiText(service.title)}
                   className="
                     flex items-center gap-2
                     text-sm font-medium
@@ -316,7 +318,7 @@ const Main = () => {
                 >
                   <Icon className={iconColors[index]} aria-hidden="true" />
 
-                  {service.title}
+                  {uiText(service.title)}
                 </div>
               );
             })}

@@ -1,3 +1,4 @@
+import useUiText from "../hooks/useUiText";
 import React, { useState } from "react";
 import Link from "next/link";
 
@@ -88,6 +89,7 @@ const projects = [
 ];
 
 const Projects = () => {
+  const uiText = useUiText();
   const [activeCategory, setActiveCategory] = useState("All Projects");
 
   const filteredProjects =
@@ -209,7 +211,7 @@ const Projects = () => {
                   }
                 `}
               >
-                {category}
+                {uiText(category)}
               </button>
             );
           })}
@@ -273,8 +275,8 @@ const Projects = () => {
               backgroundImg={project.backgroundImg}
               projectUrl={project.projectUrl}
               tech={project.tech}
-              category={project.category}
-              description={project.description}
+              category={uiText(project.category)}
+              description={uiText(project.description)}
             />
           ))}
         </div>
