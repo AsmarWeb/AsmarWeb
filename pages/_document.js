@@ -1,8 +1,8 @@
-import { Html, Head, Main, NextScript } from 'next/document'
+import Document, { Html, Head, Main, NextScript } from 'next/document'
 
-export default function Document() {
+export default function CustomDocument({ locale }) {
   return (
-    <Html>
+    <Html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
       <Head>
         <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"></link>
       </Head>
@@ -13,3 +13,12 @@ export default function Document() {
     </Html>
   )
 }
+
+CustomDocument.getInitialProps = async (ctx) => {
+  const initialProps = await Document.getInitialProps(ctx);
+
+  return {
+    ...initialProps,
+    locale: ctx.locale === "ar" ? "ar" : "en",
+  };
+};

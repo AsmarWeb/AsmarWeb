@@ -176,7 +176,7 @@ const About = () => {
                         dark:text-gray-400
                       "
                     >
-                      Build • Design • Innovate
+                      {uiText("Build \u2022 Design \u2022 Innovate")}
                     </p>
                   </div>
                 </div>
@@ -187,7 +187,7 @@ const About = () => {
           {/* RIGHT — About content */}
           <div className="mt-10 lg:col-span-7 lg:mt-0">
             {/* Section label */}
-            <span className="studio-badge">About Our Studio</span>
+            <span className="studio-badge">{uiText("About Our Studio")}</span>
 
             {/* Heading */}
             <h2
@@ -202,7 +202,7 @@ const About = () => {
               "
             >
               Where Technology Meets{" "}
-              <span className="studio-gradient-text">Creativity.</span>
+              <span className="studio-gradient-text">{uiText("Creativity.")}</span>
             </h2>
 
             {/* Description */}
@@ -214,10 +214,7 @@ const About = () => {
                 lg:text-lg
               "
             >
-              AsmarWeb Studio is an independent creative technology studio
-              focused on building digital products, designing memorable
-              experiences, and helping businesses establish a stronger digital
-              presence.
+              {uiText("AsmarWeb Studio is an independent creative technology studio focused on building digital products, designing memorable experiences, and helping businesses establish a stronger digital presence.")}
             </p>
 
             <p
@@ -228,9 +225,7 @@ const About = () => {
                 lg:text-lg
               "
             >
-              Founded on a passion for software development, graphic design, and
-              digital innovation, the studio combines technical expertise with
-              creative thinking to deliver practical and engaging solutions.
+              {uiText("Founded on a passion for software development, graphic design, and digital innovation, the studio combines technical expertise with creative thinking to deliver practical and engaging solutions.")}
             </p>
 
             <p
@@ -241,9 +236,7 @@ const About = () => {
                 lg:text-lg
               "
             >
-              Our vision is to grow into a collaborative studio where
-              developers, designers, and creative professionals work together on
-              meaningful projects, including open-source initiatives.
+              {uiText("Our vision is to grow into a collaborative studio where developers, designers, and creative professionals work together on meaningful projects, including open-source initiatives.")}
             </p>
 
             {/* Expertise */}
@@ -258,7 +251,7 @@ const About = () => {
 
                 return (
                   <div
-                    key={uiText(item.title)}
+                    key={item.title}
                     className="
                       flex items-center
                       gap-3 rounded-xl
@@ -337,12 +330,12 @@ const About = () => {
               "
             >
               <Link href="/#projects" className="studio-btn-primary">
-                Explore Our Projects
+                {uiText("Explore Our Projects")}
                 <FaArrowRight aria-hidden="true" />
               </Link>
 
               <Link href="/#contact" className="studio-btn-secondary">
-                Work With Us
+                {uiText("Work With Us")}
               </Link>
             </div>
           </div>
